@@ -13,6 +13,8 @@
 }
 
 body {
+    display:flex;
+    justify-content: space-around;
     padding:  2rem;
     font-family: "Poppins", sans-serif;
     background-color: var(--bg-color);
@@ -24,19 +26,19 @@ h1 {
     font-size: 1.5rem;
 }
 
-h3, header, ul {
+h3, header, ul, #exp {
     margin-bottom: 0.5rem;
 }
 
 main {
-    max-width: 400px;
+    max-width: 500px;
     margin: 1rem auto;
     background-color: #fff;
     padding: 1rem;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
-header {
+header, #exp {
     background-color: var(--main-color);
     color: #fff;
     padding: 1rem;
@@ -44,6 +46,23 @@ header {
     border-radius: 5px;
     display: flex;
     flex-wrap: wrap;
+}
+
+#exp {
+    height: 100px;
+    transition: all .7s;
+}
+
+#exp:hover {
+    height: 250px;
+}
+
+#exp.active {
+    height: 250px;
+}
+
+header:nth-child(2){
+    width: 468.02;
 }
 
 header div {
@@ -74,7 +93,7 @@ form {
     gap: 10px;
 }
 
-form input:not(#type), form button {
+form input:not(#type), form button, #title input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -94,7 +113,15 @@ form button {
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
-form label {
+form button:hover {
+    filter: brightness(0.9);
+}
+
+form button:active {
+    transform: scale(0.98);
+}
+
+form label, #title label {
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
