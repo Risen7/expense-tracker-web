@@ -14,6 +14,7 @@ const income = document.getElementById("income");
 const expense = document.getElementById("expense");
 
 form.addEventListener('submit', addTransaction);
+// form.addEventListener('button', addHistory);
 
 function updateTotal() {
     const incomeTotal = transactions
