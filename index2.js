@@ -1,4 +1,6 @@
-const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+const transactionss = JSON.parse(localStorage.getItem("transactionss")) || [];
+
+const expenseHistory = [ "asdadsadasdsa", "asdsadsadsadasd", "asdsadasdasdsa"]
 
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -12,15 +14,18 @@ const status = document.getElementById("status");
 const balance = document.getElementById("balance");
 const income = document.getElementById("income");
 const expense = document.getElementById("expense");
+const expTransactions = document.getElementById("transactions")
+
 
 form.addEventListener('submit', addTransaction);
-// form.addEventListener('button', addHistory);
+form.addEventListener('button', addHistory);
+
 
 function updateTotal() {
-    const incomeTotal = transactions
+    const incomeTotal = transactionss
         .filter((trx) => trx.type === "income")
         .reduce((total, trx) => total + trx.amount, 0);
-    const expenseTotal = transactions
+    const expenseTotal = transactionss
         .filter((trx) => trx.type === "expense")
         .reduce((total, trx) => total + trx.amount, 0);
 
@@ -35,12 +40,12 @@ function renderList() {
     list.innerHTML = "";
 
     status.textContent = "";
-    if(transactions.length === 0) {
+    if(transactionss.length === 0) {
         status.textContent = "No transactions";
         return;
     }
 
-    transactions.forEach(({ id, name, amount, date, type }) => {
+    transactionss.forEach(({ id, name, amount, date, type }) => {
         const sign = 'income' === type ? 1 : -1;
 
         const li = document.createElement('li');
@@ -70,8 +75,8 @@ renderList();
 updateTotal();
 
 function deleteTransaction(id) {
-    const index = transactions.findIndex((trx) => trx.id === id)
-    transactions.splice(index, 1);
+    const index = transactionss.findIndex((trx) => trx.id === id)
+    transactionss.splice(index, 1);
 
     updateTotal();
     saveTransactions();
@@ -83,8 +88,8 @@ function addTransaction(e) {
 
     const formData = new FormData(this);
 
-    transactions.push({
-        id: transactions.length + 1,
+    transactionss.push({
+        id: transactionss.length + 1,
         name: formData.get("name"),
         amount: parseFloat(formData.get("amount")),
         date: new Date(formData.get("date")),
@@ -98,8 +103,27 @@ function addTransaction(e) {
     renderList();
 }
 
-function saveTransactions() {
-    transactions.sort((a,b) => new Date(b.date) - new Date(a.date));
+function addHistory() {
+    expenseHistory.push(
+        
+    )
+}
 
-    localStorage.setItem("transactions", JSON.stringify(transactions));
+function renderExp() {
+    expenseHistory.forEach(
+        
+    )
+}
+
+function saveTransactions() {
+    transactionss.sort((a,b) => new Date(b.date) - new Date(a.date));
+
+    localStorage.setItem("transactionss", JSON.stringify(transactionss));
+}
+
+
+
+function saveHistory() { //save or transfer data of expense to history data
+
+    localStorage.setItem("expenseHistory", JSON.stringify(expenseHistory));
 }
