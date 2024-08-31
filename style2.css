@@ -53,10 +53,6 @@ header, #exp {
     transition: all .7s;
 }
 
-#exp:hover {
-    height: 250px;
-}
-
 #exp.active {
     height: 250px;
 }
@@ -104,6 +100,10 @@ form input:not(#type), form button, #title input {
     font-size: 1rem;
 }
 
+#title input {
+    font-size: 1.5rem;
+}
+
 form button {
     background-color: var(--main-color);
     color: #fff;
@@ -125,6 +125,10 @@ form label, #title label {
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
+}
+
+#title label {
+    font-size: 1.5rem;
 }
 
 form div:nth-child(-n + 2) {
