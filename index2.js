@@ -1,6 +1,6 @@
 const transactionss = JSON.parse(localStorage.getItem("transactionss")) || [];
 
-const expenseHistory = [ "asdadsadasdsa", "asdsadsadsadasd", "asdsadasdasdsa"]
+const expenseHistory = [ "Team1", "Team2", "Team3"]
 
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -14,11 +14,13 @@ const status = document.getElementById("status");
 const balance = document.getElementById("balance");
 const income = document.getElementById("income");
 const expense = document.getElementById("expense");
-const expTransactions = document.getElementById("transactions")
+const expTransactions = document.getElementById("transactions");
+const expList = document.getElementById("expenseList");
+const expStatus = document.getElementById("expStatus");
 
 
 form.addEventListener('submit', addTransaction);
-form.addEventListener('button', addHistory);
+form.addEventListener('button', renderExp);
 
 
 function updateTotal() {
@@ -110,9 +112,22 @@ function addHistory() {
 }
 
 function renderExp() {
-    expenseHistory.forEach(
-        
-    )
+    console.log("render");
+    expList.innerHTML = "";
+
+    status.textContent = "";
+    if(expenseHistory.length === 0) {
+        expStatus.textContent = "No transactions";
+        return;
+    }
+
+    expenseHistory.forEach((expenseHist) => {
+        const li = document.createElement('li');
+
+        li.innerHTML = `We have ${expenseHist}`;
+
+        expList.appendChild(li);
+    });
 }
 
 function saveTransactions() {
