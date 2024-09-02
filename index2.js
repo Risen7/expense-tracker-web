@@ -1,6 +1,6 @@
 const transactionss = JSON.parse(localStorage.getItem("transactionss")) || [];
 
-const expenseHistory = [ "Team1", "Team2", "Team3"]
+const expenseHistory = JSON.parse(localStorage.getItem("expenseHistory")) || [];
 
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -14,13 +14,15 @@ const status = document.getElementById("status");
 const balance = document.getElementById("balance");
 const income = document.getElementById("income");
 const expense = document.getElementById("expense");
-const expTransactions = document.getElementById("transactions");
+const expTransactions = document.getElementById("transaction");
+const header = document.getElementById("header");
 const expList = document.getElementById("expenseList");
 const expStatus = document.getElementById("expStatus");
 
 
+
 form.addEventListener('submit', addTransaction);
-form.addEventListener('button', renderExp);
+form.addEventListener('button', addHistory);
 
 
 function updateTotal() {
@@ -78,11 +80,15 @@ updateTotal();
 
 function deleteTransaction(id) {
     const index = transactionss.findIndex((trx) => trx.id === id)
+    // const indexExp = expenseHistory.findIndex((try) => try.id === id)
     transactionss.splice(index, 1);
+    // expenseHistory.splice(index, 1);
 
     updateTotal();
-    saveTransactions();
+    saveTransactions(); 
+    saveHistory();
     renderList();
+    renderExp();
 }
 
 function addTransaction(e) {
@@ -102,31 +108,43 @@ function addTransaction(e) {
 
     updateTotal();
     saveTransactions();
+    saveHistory();
     renderList();
+    renderExp();
 }
 
 function addHistory() {
-    expenseHistory.push(
-        
-    )
+    console.log("add hist")
+    expenseHistory.push(expTransactions)
+    updateTotal();
+    saveTransactions();
+    saveHistory();
+    renderList();
+    renderExp();
 }
 
 function renderExp() {
-    console.log("render");
+    // console.log(expTransactions.innerHTML);
     expList.innerHTML = "";
 
-    status.textContent = "";
+    expStatus.textContent = "";
     if(expenseHistory.length === 0) {
         expStatus.textContent = "No transactions";
         return;
     }
 
-    expenseHistory.forEach((expenseHist) => {
-        const li = document.createElement('li');
+    expenseHistory.forEach((expTransactions) => {
+        const li = document.createElement('header');
+        
 
-        li.innerHTML = `We have ${expenseHist}`;
+        li.innerHTML = `${header.innerHTML}`;
+
+        const li2 = document.createElement('section');
+
+        li2.innerHTML = `${expTransactions.innerHTML}`;
 
         expList.appendChild(li);
+        expList.appendChild(li2);
     });
 }
 
