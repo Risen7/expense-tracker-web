@@ -16,7 +16,7 @@
                 <label for="title">Title</label>
                 <input  type="text" name="title" required>
             </div>
-            <header>
+            <header id="header">
                 <div>
                     <h5>Total Balance</h5>
                     <span id="balance">$0.00</span>
@@ -70,7 +70,7 @@
                         <input type="date" name="date" required />
                     </div>
                     <button type="submit">Submit</button>
-                    <button type="button" onclick="renderExp()">Save</button>
+                    <button type="button" onclick="addHistory()">Save</button>
                 </form>
             </section>
         </main>
@@ -79,8 +79,8 @@
     <container>
         <h1>Expense History</h1>
         <main>
+            <div id="expStatus"></div>
             <ul id="expenseList">
-                
             </ul>
 
         </main>
