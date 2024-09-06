@@ -1,6 +1,6 @@
 const transactionss = JSON.parse(localStorage.getItem("transactionss")) || [];
 
-const expenseHistory = localStorage.getItem("expenseHistory") || [];
+// const expenseHistory = localStorage.getItem("expenseHistory") || [];
 // const headerExp = JSON.parse(localStorage.getItem("header")) || [];
 
 const formatter = new Intl.NumberFormat('en-US', {
@@ -110,19 +110,19 @@ function addTransaction(e) {
 
 function addHistory() {
 // console.log(save.innerHTML);
-const li = document.createElement('history')
-
-li.innerHTML = save.innerHTML;
-expList.appendChild(li);
-saveHistory();
-}
-
-function renderExp() {
     const li = document.createElement('history')
 
     li.innerHTML = save.innerHTML;
     expList.appendChild(li);
     saveHistory();
+}
+
+function renderExp() {
+    const li = document.createElement('history')
+
+    li.innerHTML = localStorage.getItem("save");
+    expList.appendChild(li);
+    // saveHistory();
     // console.log(expTransactions.innerHTML);
     // expList.innerHTML = "";
 
@@ -157,7 +157,9 @@ function saveTransactions() {
 
 
 function saveHistory() { //save or transfer data of expense to history data
+    save.push(save.innerHTML);
+    localStorage.setItem("save", save.innerHTML);
 
-    localStorage.setItem("expenseHistory", save);
+    // localStorage.setItem("expenseHistory", save.innerHTML);
     // localStorage.setItem("header", JSON.stringify(header));
 }
