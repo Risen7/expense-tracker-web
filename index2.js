@@ -115,6 +115,7 @@ function addHistory() {
     li.innerHTML = save.innerHTML;
     expList.appendChild(li);
     saveHistory();
+    removeExp();
 }
 
 function renderExp() {
@@ -145,8 +146,13 @@ function renderExp() {
     //     expList.appendChild(li);
     //     expList.appendChild(li2);   
 //     });
-    
+
 }   
+
+function removeExp() {
+    console.log("remove child")
+    list.innerHTML = "";  
+}
 
 function saveTransactions() {
     transactionss.sort((a,b) => new Date(b.date) - new Date(a.date));
@@ -157,7 +163,7 @@ function saveTransactions() {
 
 
 function saveHistory() { //save or transfer data of expense to history data
-    save.push(save.innerHTML);
+    // save.push(save.innerHTML);
     localStorage.setItem("save", save.innerHTML);
 
     // localStorage.setItem("expenseHistory", save.innerHTML);
