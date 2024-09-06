@@ -1,13 +1,14 @@
 const transactionss = JSON.parse(localStorage.getItem("transactionss")) || [];
 
-const expenseHistory = JSON.parse(localStorage.getItem("expenseHistory")) || [];
+const expenseHistory = localStorage.getItem("expenseHistory") || [];
+// const headerExp = JSON.parse(localStorage.getItem("header")) || [];
 
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'PHP',
     signDisplay: "always",
 })
-
+    
 const list = document.getElementById("transactionList");
 const form = document.getElementById("transactionForm");
 const status = document.getElementById("status");
@@ -18,12 +19,9 @@ const expTransactions = document.getElementById("transaction");
 const header = document.getElementById("header");
 const expList = document.getElementById("expenseList");
 const expStatus = document.getElementById("expStatus");
-
-
+const save = document.getElementById("save");
 
 form.addEventListener('submit', addTransaction);
-form.addEventListener('button', addHistory);
-
 
 function updateTotal() {
     const incomeTotal = transactionss
@@ -76,6 +74,7 @@ function renderList() {
 }
 
 renderList(); 
+renderExp();
 updateTotal();
 
 function deleteTransaction(id) {
@@ -86,9 +85,7 @@ function deleteTransaction(id) {
 
     updateTotal();
     saveTransactions(); 
-    saveHistory();
     renderList();
-    renderExp();
 }
 
 function addTransaction(e) {
@@ -108,45 +105,48 @@ function addTransaction(e) {
 
     updateTotal();
     saveTransactions();
-    saveHistory();
     renderList();
-    renderExp();
 }
 
 function addHistory() {
-    console.log("add hist")
-    expenseHistory.push(expTransactions)
-    updateTotal();
-    saveTransactions();
-    saveHistory();
-    renderList();
-    renderExp();
+// console.log(save.innerHTML);
+const li = document.createElement('history')
+
+li.innerHTML = save.innerHTML;
+expList.appendChild(li);
+saveHistory();
 }
 
 function renderExp() {
+    const li = document.createElement('history')
+
+    li.innerHTML = save.innerHTML;
+    expList.appendChild(li);
+    saveHistory();
     // console.log(expTransactions.innerHTML);
-    expList.innerHTML = "";
+    // expList.innerHTML = "";
 
-    expStatus.textContent = "";
-    if(expenseHistory.length === 0) {
-        expStatus.textContent = "No transactions";
-        return;
-    }
+    // expStatus.textContent = "";
+    // if(expenseHistory.length === 0) {
+    //     expStatus.textContent = "No transactions";
+    //     return;
+    // }
+    
 
-    expenseHistory.forEach((expTransactions) => {
-        const li = document.createElement('header');
-        
+    // expenseHistory.forEach((expTransactions) => {
+    //     const li = document.createElement('header');
 
-        li.innerHTML = `${header.innerHTML}`;
+    //     li.innerHTML = `${header.innerHTML}`;
 
-        const li2 = document.createElement('section');
+    //     const li2 = document.createElement('section');
 
-        li2.innerHTML = `${expTransactions.innerHTML}`;
+    //     li2.innerHTML = `${expTransactions.innerHTML}`;
 
-        expList.appendChild(li);
-        expList.appendChild(li2);
-    });
-}
+    //     expList.appendChild(li);
+    //     expList.appendChild(li2);   
+//     });
+    
+}   
 
 function saveTransactions() {
     transactionss.sort((a,b) => new Date(b.date) - new Date(a.date));
@@ -158,5 +158,6 @@ function saveTransactions() {
 
 function saveHistory() { //save or transfer data of expense to history data
 
-    localStorage.setItem("expenseHistory", JSON.stringify(expenseHistory));
+    localStorage.setItem("expenseHistory", save);
+    // localStorage.setItem("header", JSON.stringify(header));
 }
