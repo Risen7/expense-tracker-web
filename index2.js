@@ -109,7 +109,7 @@ function addTransaction(e) {
 }
 
 function addHistory() {
-// console.log(save.innerHTML);
+    console.log(transactionss.length);
     const li = document.createElement('history')
 
     li.innerHTML = save.innerHTML;
@@ -150,8 +150,12 @@ function renderExp() {
 }   
 
 function removeExp() {
-    console.log("remove child")
-    list.innerHTML = "";  
+    console.log(transactionss)
+    // list.firstChild.remove();
+    transactionss.splice(0,transactionss.length);  
+    updateTotal();
+    saveTransactions();
+    renderList();
 }
 
 function saveTransactions() {
