@@ -114,15 +114,19 @@ function addHistory() {
 
     li.innerHTML = save.innerHTML;
     expList.appendChild(li);
+    saveH();
     saveHistory();
     removeExp();
 }
 
 function renderExp() {
-    const li = document.createElement('history')
+    // const li = document.createElement('history');
 
-    li.innerHTML = localStorage.getItem("save");
-    expList.appendChild(li);
+    // li.innerHTML = localStorage.getItem("save");
+    // expList.appendChild(li);
+
+    expList.innerHTML = localStorage.getItem("saveHist");
+
     // saveHistory();
     // console.log(expTransactions.innerHTML);
     // expList.innerHTML = "";
@@ -172,4 +176,8 @@ function saveHistory() { //save or transfer data of expense to history data
 
     // localStorage.setItem("expenseHistory", save.innerHTML);
     // localStorage.setItem("header", JSON.stringify(header));
+}
+
+function saveH() {
+    localStorage.setItem("saveHist", expList.innerHTML);
 }
