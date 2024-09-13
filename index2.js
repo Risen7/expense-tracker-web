@@ -107,7 +107,7 @@ function addHistory() {
     const titleIn = document.createElement('h1')  
     titleIn.innerHTML = titleInput.value; 
     li.appendChild(titleIn);
-    li.innerHTML = `${titleInput.value}${save.innerHTML}`;
+    li.innerHTML = `<h1>${titleInput.value}</h1>${save.innerHTML}`;
     expList.appendChild(li);
     // actRemove.remove();
     saveH();
