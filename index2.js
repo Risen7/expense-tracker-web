@@ -103,12 +103,12 @@ function addTransaction(e) {
 }
 
 function addHistory() {
+    const li = document.createElement('history') 
     const titleIn = document.createElement('h1')  
-    titleIn.innerHTML = titleInput.value;
-    const li = document.createElement('history')  
-    li.innerHTML = save.innerHTML;
-    expList.appendChild(li);
+    titleIn.innerHTML = titleInput.value; 
     li.appendChild(titleIn);
+    li.innerHTML = `${titleInput.value}${save.innerHTML}`;
+    expList.appendChild(li);
     // actRemove.remove();
     saveH();
     saveHistory();
