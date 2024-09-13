@@ -1,8 +1,5 @@
 const transactionss = JSON.parse(localStorage.getItem("transactionss")) || [];
 
-// const expenseHistory = localStorage.getItem("expenseHistory") || [];
-// const headerExp = JSON.parse(localStorage.getItem("header")) || [];
-
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'PHP',
@@ -20,6 +17,9 @@ const header = document.getElementById("header");
 const expList = document.getElementById("expenseList");
 const expStatus = document.getElementById("expStatus");
 const save = document.getElementById("save");
+const title = document.getElementById("title");
+const actRemove = document.getElementById("actRemove")
+const titleInput = document.querySelector(".titleInput");
 
 form.addEventListener('submit', addTransaction);
 
@@ -62,13 +62,12 @@ function renderList() {
                 <span>${formatter.format(amount * sign)}</span>
             </div>
         
-            <div class="action">
+            <div class="action" id="actRemove">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" onclick="deleteTransaction(${id})">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
          </div>
         `;
-
         list.appendChild(li);
     });
 }
@@ -79,9 +78,7 @@ updateTotal();
 
 function deleteTransaction(id) {
     const index = transactionss.findIndex((trx) => trx.id === id)
-    // const indexExp = expenseHistory.findIndex((try) => try.id === id)
     transactionss.splice(index, 1);
-    // expenseHistory.splice(index, 1);
 
     updateTotal();
     saveTransactions(); 
@@ -90,9 +87,7 @@ function deleteTransaction(id) {
 
 function addTransaction(e) {
     e.preventDefault();
-
     const formData = new FormData(this);
-
     transactionss.push({
         id: transactionss.length + 1,
         name: formData.get("name"),
@@ -102,60 +97,29 @@ function addTransaction(e) {
     });
 
     this.reset();
-
     updateTotal();
     saveTransactions();
     renderList();
 }
 
 function addHistory() {
-    console.log(transactionss.length);
-    const li = document.createElement('history')
-
+    const titleIn = document.createElement('h1')  
+    titleIn.innerHTML = titleInput.value;
+    const li = document.createElement('history')  
     li.innerHTML = save.innerHTML;
     expList.appendChild(li);
+    li.appendChild(titleIn);
+    // actRemove.remove();
     saveH();
     saveHistory();
     removeExp();
 }
 
 function renderExp() {
-    // const li = document.createElement('history');
-
-    // li.innerHTML = localStorage.getItem("save");
-    // expList.appendChild(li);
-
-    expList.innerHTML = localStorage.getItem("saveHist");
-
-    // saveHistory();
-    // console.log(expTransactions.innerHTML);
-    // expList.innerHTML = "";
-
-    // expStatus.textContent = "";
-    // if(expenseHistory.length === 0) {
-    //     expStatus.textContent = "No transactions";
-    //     return;
-    // }
-    
-
-    // expenseHistory.forEach((expTransactions) => {
-    //     const li = document.createElement('header');
-
-    //     li.innerHTML = `${header.innerHTML}`;
-
-    //     const li2 = document.createElement('section');
-
-    //     li2.innerHTML = `${expTransactions.innerHTML}`;
-
-    //     expList.appendChild(li);
-    //     expList.appendChild(li2);   
-//     });
-
+   expList.innerHTML = localStorage.getItem("saveHist");
 }   
 
 function removeExp() {
-    console.log(transactionss)
-    // list.firstChild.remove();
     transactionss.splice(0,transactionss.length);  
     updateTotal();
     saveTransactions();
@@ -164,18 +128,11 @@ function removeExp() {
 
 function saveTransactions() {
     transactionss.sort((a,b) => new Date(b.date) - new Date(a.date));
-
     localStorage.setItem("transactionss", JSON.stringify(transactionss));
 }
 
-
-
-function saveHistory() { //save or transfer data of expense to history data
-    // save.push(save.innerHTML);
+function saveHistory() { 
     localStorage.setItem("save", save.innerHTML);
-
-    // localStorage.setItem("expenseHistory", save.innerHTML);
-    // localStorage.setItem("header", JSON.stringify(header));
 }
 
 function saveH() {
