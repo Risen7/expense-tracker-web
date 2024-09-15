@@ -254,7 +254,7 @@ ul li:hover .action {
 }
 
 history {
-    max-width: 500px;
+    width: 500px;
     display: flex;
     background-color: #fff;
     flex-direction: column;
@@ -275,6 +275,20 @@ container {
     margin-inline: 1rem;
 }
 
+history h1 {
+    cursor: pointer;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px black solid;
+}
+
+history header .active {
+    display: none;
+}
+
+history section .active {
+    display: none;
+}
 
 @media (max-width: 985px) {
     body {
