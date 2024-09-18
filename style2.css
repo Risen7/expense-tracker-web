@@ -275,20 +275,23 @@ container {
     margin-inline: 1rem;
 }
 
-history h1 {
+history #titleDiv {
+    display: flex ;
+    justify-content: space-between;
     cursor: pointer;
     margin-bottom: 20px;
     padding-bottom: 20px;
     border-bottom: 2px black solid;
 }
 
-history header .active {
+#header.active {
     display: none;
 }
 
-history section .active {
+#transaction.active {
     display: none;
 }
+
 
 @media (max-width: 985px) {
     body {
