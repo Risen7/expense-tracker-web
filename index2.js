@@ -107,7 +107,9 @@ function addHistory() {
     const titleIn = document.createElement('h1')  
     titleIn.innerHTML = titleInput.value; 
     li.appendChild(titleIn);
-    li.innerHTML = `<h1>${titleInput.value}</h1>${save.innerHTML}`;
+    li.innerHTML = `<div id="titleDiv">
+    <h1>${titleInput.value}</h1><button id="titleBtn">Expand</button></div>
+    ${save.innerHTML}`;
     expList.appendChild(li);
     // actRemove.remove();
     saveH();
@@ -138,3 +140,12 @@ function saveHistory() {
 function saveH() {
     localStorage.setItem("saveHist", expList.innerHTML);
 }
+
+expList.addEventListener("click", function(e) {
+    if(e.target.tagName === "BUTTON") {
+        e.target.parentElement.parentElement.children[1].classList.toggle("active");
+        e.target.parentElement.parentElement.children[2].classList.toggle("active");
+        saveH();
+        saveHistory();
+    }
+})
