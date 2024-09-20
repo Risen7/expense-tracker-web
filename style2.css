@@ -286,13 +286,19 @@ history #titleDiv {
     border-bottom: 2px black solid;
 }
 
+history #header.active {
+    display: block;
+}
 
+history #transaction.active {
+    display: block;
+}
 
-#header.active {
+history #header {
     display: none;
 }
 
-#transaction.active {
+history #transaction {
     display: none;
 }
 
