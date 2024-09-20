@@ -14,7 +14,7 @@
 
 body {
     display:flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding:  2rem;
     font-family: "Poppins", sans-serif;
     background-color: var(--bg-color);
