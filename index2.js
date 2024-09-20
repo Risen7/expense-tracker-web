@@ -19,7 +19,7 @@ const expStatus = document.getElementById("expStatus");
 const save = document.getElementById("save");
 const title = document.getElementById("title");
 const actRemove = document.getElementById("actRemove")
-const titleInput = document.querySelector(".titleInput");
+const titleInput = document.getElementById("titleInput");
 
 form.addEventListener('submit', addTransaction);
 
@@ -108,10 +108,10 @@ function addHistory() {
     titleIn.innerHTML = titleInput.value; 
     li.appendChild(titleIn);
     li.innerHTML = `<div id="titleDiv">
-    <h1>${titleInput.value}</h1><button id="titleBtn">Expand</button></div>
+    <h1>${titleInput.value}</h1><span id="drop"></span></div>
     ${save.innerHTML}`;
     expList.appendChild(li);
-    // actRemove.remove();
+    titleInput.value = "";
     saveH();
     saveHistory();
     removeExp();
@@ -122,7 +122,7 @@ function renderExp() {
 }   
 
 function removeExp() {
-    transactionss.splice(0,transactionss.length);  
+    transactionss.splice(0,transactionss.length);
     updateTotal();
     saveTransactions();
     renderList();
@@ -142,7 +142,8 @@ function saveH() {
 }
 
 expList.addEventListener("click", function(e) {
-    if(e.target.tagName === "BUTTON") {
+    if(e.target.tagName === "H1" || "SPAN") {
+        e.target.parentElement.parentElement.children[0].classList.toggle("active");
         e.target.parentElement.parentElement.children[1].classList.toggle("active");
         e.target.parentElement.parentElement.children[2].classList.toggle("active");
         saveH();
