@@ -31,7 +31,7 @@ h3, header, ul, #exp {
 }
 
 main {
-    max-width: 500px;
+    width: 450px;
     margin: 1rem auto;
     background-color: #fff;
     padding: 1rem;
@@ -254,7 +254,7 @@ ul li:hover .action {
 }
 
 history {
-    width: 500px;
+    max-width: 450px;
     display: flex;
     background-color: #fff;
     flex-direction: column;
@@ -266,9 +266,10 @@ history {
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
-.mainHistory {
-    max-width: 500px;
+#mainHistory {
+    width: 450px;
     margin: 1rem auto;
+    /* padding: 1rem; */
 }
 
 container {
@@ -278,11 +279,14 @@ container {
 history #titleDiv {
     display: flex ;
     justify-content: space-between;
+    position: relative;
     cursor: pointer;
     margin-bottom: 20px;
     padding-bottom: 20px;
     border-bottom: 2px black solid;
 }
+
+
 
 #header.active {
     display: none;
@@ -292,6 +296,26 @@ history #titleDiv {
     display: none;
 }
 
+#titleDiv.active {
+    cursor: pointer;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    border-bottom: none;
+    max-width: 500px;
+}
+
+#drop::after {
+    content: "\25BC";
+    color: #fff;
+    /* position: absolute;
+    top: -3.5px;
+    right: 0; */
+    padding: 10px;
+    background: var(--main-color);
+    pointer-events: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
 
 @media (max-width: 985px) {
     body {
