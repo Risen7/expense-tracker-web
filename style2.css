@@ -317,6 +317,10 @@ history #titleDiv {
     transition: all 0.3s ease;
 }
 
+history section ul li >  .action {
+    display: none;
+}
+
 @media (max-width: 985px) {
     body {
         flex-direction: column;
