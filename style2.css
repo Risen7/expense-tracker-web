@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-    --bg-color: #f6f8fa;
-    --text-color: #1d1f27;
-    --main-color: #3a3dbe;
+    --bg-color: #2b2b2b;
+    --text-color: #111111;
+    --main-color: #747474;
+    --h1-color: #dbdbdb;
 }   
 
 * {
@@ -26,6 +27,10 @@ h1 {
     font-size: 1.5rem;
 }
 
+#mainTitle {
+    color: var(--h1-color);
+}
+
 h3, header, ul, #exp {
     margin-bottom: 0.5rem;
 }
@@ -33,8 +38,9 @@ h3, header, ul, #exp {
 main {
     width: 450px;
     margin: 1rem auto;
-    background-color: #fff;
+    background-color: #a4c58b;
     padding: 1rem;
+    border-radius: 15px;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -46,6 +52,7 @@ header, #exp {
     border-radius: 5px;
     display: flex;
     flex-wrap: wrap;
+    border-radius: 15px;
     justify-content: center;
 }
 
@@ -103,6 +110,7 @@ form input:not(#type), form button, #title input {
 
 #title input {
     font-size: 1.5rem;
+    margin-block: 15px;
 }
 
 form button {
@@ -123,13 +131,15 @@ form button:active {
 }
 
 form label, #title label {
-    font-size: 0.75rem;
+    font-size: 1.2rem;
     font-weight: 600;
     text-transform: uppercase;
 }
 
 #title label {
     font-size: 1.5rem;
+    color: white;
+    text-shadow: 1px 2px 3px rgb(80, 80, 80);
 }
 
 form div:nth-child(-n + 2) {
@@ -150,7 +160,7 @@ input#type {
     align-items: center;
     justify-content: center;
     padding: 10px;
-    background: #eee;
+    background: #000000;
     border-radius: 5px;
     position: relative;
 }
@@ -160,6 +170,8 @@ input#type {
     text-align: center;
     cursor: pointer;
     z-index: 2;
+    color: #fff;
+    text-shadow: 1px 2px 3px rgb(51, 51, 51);
 }
 
 .option::before {
@@ -167,7 +179,7 @@ input#type {
     position: absolute;
     top: 5px;
     left: 0;
-    background-color: #fff;
+    background-color: #747474;
     height: calc(100% - 10px);
     width: calc(50% - 10px);
     transform: translateX(5px);
@@ -216,7 +228,7 @@ ul li:hover {
 }
 
 .amount.income {
-    color: yellowgreen;
+    color: rgb(255, 255, 255);
 }
 
 .amount.expense {
@@ -256,10 +268,11 @@ ul li:hover .action {
 history {
     max-width: 450px;
     display: flex;
-    background-color: #fff;
+    background-color: #a4c58b;
     flex-direction: column;
     justify-content: center;
     margin: 17px 0px 15px 0;
+    border-radius: 15px;
     /* margin-top: 17px;
     margin-inline: 0; */
     padding: 30px 20px 0px 20px; 
@@ -281,6 +294,8 @@ history #titleDiv {
     justify-content: space-between;
     position: relative;
     cursor: pointer;
+    color: white;
+    text-shadow: 1px 2px 3px rgb(80, 80, 80);
     margin-bottom: 20px;
     padding-bottom: 20px;
     border-bottom: 2px black solid;
